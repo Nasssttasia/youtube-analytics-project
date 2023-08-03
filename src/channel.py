@@ -41,16 +41,26 @@ class Channel:
         with open(filename, 'w', encoding="UTF-8") as file:
             json.dump(channel, file, ensure_ascii=False)
 
-"""
     def __str__(self):
         return f"{self.title} {self.url}"
 
     def __add__(self, other):
-        return self.subscribers + self.subscribers
+        return self.subscribers + other.subscribers
 
     def __sub__(self, other):
-        pass
+        return self.subscribers - other.subscribers
 
     def __lt__(self, other):
-        pass
-"""
+        return self.subscribers < other.subscribers
+
+    def __le__(self, other):
+        return self.subscribers <= other.subscribers
+
+    def __gt__(self, other):
+        return self.subscribers > other.subscribers
+
+    def __ge__(self, other):
+        return self.subscribers >= other.subscribers
+
+    def __eq__(self, other):
+        return self.subscribers == other.subscribers
