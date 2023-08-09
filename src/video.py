@@ -1,6 +1,6 @@
 import os
 
-import self as self
+
 from googleapiclient.discovery import build
 
 
