@@ -7,11 +7,17 @@ from googleapiclient.discovery import build
 class Video:
     def __init__(self, video_id):
         self.video_id = video_id
-        self.__info_to_print = self.get_info_video()
-        self.video_title = self.__info_to_print['items'][0]['snippet']['title']
-        self.view_count = self.__info_to_print['items'][0]['statistics']['viewCount']
-        self.like_count = self.__info_to_print['items'][0]['statistics']['likeCount']
-        self.comment_count = self.__info_to_print['items'][0]['statistics']['commentCount']
+        try:
+            self.__info_to_print = self.get_info_video()
+            self.video_title = self.__info_to_print['items'][0]['snippet']['title']
+            self.view_count = self.__info_to_print['items'][0]['statistics']['viewCount']
+            self.like_count = self.__info_to_print['items'][0]['statistics']['likeCount']
+            self.comment_count = self.__info_to_print['items'][0]['statistics']['commentCount']
+        except IndexError:
+            self.video_title = None
+            self.view_count = None
+            self.like_count = None
+            self.comment_count = None
 
     def get_info_video(self):
         api_key: str = os.getenv('API_KEY')
